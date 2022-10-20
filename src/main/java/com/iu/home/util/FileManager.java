@@ -42,8 +42,8 @@ public class FileManager extends AbstractView {
 	protected void renderMergedOutputModel(Map<String, Object> model, HttpServletRequest request,
 		HttpServletResponse response) throws Exception {
 		QnaFileVO qnaFileVO = (QnaFileVO) model.get("fileVO");
-		
-		File file = new File("C:/Sunguk/result/upload/qna/", qnaFileVO.getFileName());
+		String path = (String) model.get("path");
+		File file = new File("C:/Sunguk/result/upload/"+path, qnaFileVO.getFileName());
 		// 한글처리
 		response.setCharacterEncoding("UTF-8");
 		

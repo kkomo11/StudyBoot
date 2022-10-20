@@ -15,7 +15,9 @@
 	<a href="/qna/list?page=1">QnA</a>
 	<div>
 		<img src="/file/qna/0ec2d593-8c67-41da-857c-834ffe3955d2_iu2.jpg">
-		<a href="/fileDown/qna?fileNum=2">Down</a>
+		<img src="/file/notice/lightIcon.png">
+		<a href="/fileDown/qna?fileNum=2">QnaDown</a>
+		<a href="/fileDown/notice?fileNum=2">NoticeDown</a>
 	</div>
 </body>
 </html>
