@@ -3,7 +3,7 @@ package com.iu.home.board.qna;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
-
+import org.eclipse.jdt.internal.compiler.ast.TrueLiteral;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -13,10 +13,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.iu.home.util.Pager;
 
 @SpringBootTest
+//@Rollback(true)
+@Transactional
 class QnaMapperTest {
 	
 	@Autowired
@@ -35,13 +39,15 @@ class QnaMapperTest {
 		assertNotEquals(0, ar.size());
 	}
 
-	//@Test
+	@Test
 	void setQna() throws Exception {
 		
-		for(int i=0; i<100; i++) {
-			int result = qnaMapper.setQna(qnaVO);
-			assertEquals(1, result);
-		}
+		qnaVO = new QnaVO();
+		qnaVO.setContents("Contents4");
+		qnaVO.setTitle("title4");
+		qnaVO.setWriter("writer4");
+		int result = qnaMapper.setQna(qnaVO);
+		assertEquals(1, result);
 	}
 	
 	//@BeforeAll
@@ -61,10 +67,7 @@ class QnaMapperTest {
 	
 	//@BeforeEach
 	void beforeEach() {
-		qnaVO = new QnaVO();
-		qnaVO.setContents("Contents3");
-		qnaVO.setTitle("title3");
-		qnaVO.setWriter("writer3");
+		
 	}
 	
 	//@AfterEach
