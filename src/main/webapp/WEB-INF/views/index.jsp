@@ -15,10 +15,13 @@
 	<c:choose>
 		<c:when test="${member eq null}">
 			<a href="/member/add">회원가입</a>
-			<a href="/member/login">로그인</a>			
+			<a href="/member/login">로그인</a>	
 		</c:when>
 		<c:otherwise>
 			<a href="/member/logout">로그아웃</a>
+			<c:forEach items="${member.roleVOs}" var="roleVO">
+				<div>${roleVO.roleName}</div>
+			</c:forEach>		
 		</c:otherwise>
 	</c:choose>
 	<a href="/qna/list?page=1">QnA</a>
