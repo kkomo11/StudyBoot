@@ -12,8 +12,18 @@
 <body>
 	<h1>Index Page</h1>
 	<img src="/images/iu1.jpg">
+	<c:choose>
+		<c:when test="${member eq null}">
+			<a href="/member/add">회원가입</a>
+			<a href="/member/login">로그인</a>			
+		</c:when>
+		<c:otherwise>
+			<a href="/member/logout">로그아웃</a>
+		</c:otherwise>
+	</c:choose>
 	<a href="/qna/list?page=1">QnA</a>
 	<div>
+		
 		<img src="/file/qna/0ec2d593-8c67-41da-857c-834ffe3955d2_iu2.jpg">
 		<img src="/file/notice/lightIcon.png">
 		<a href="/fileDown/qna?fileNum=2">QnaDown</a>

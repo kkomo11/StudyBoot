@@ -12,12 +12,12 @@
 	</insert>
 	
 	<insert id="setQnaFile" parameterType="QnaFileVO">
-		INSERT INTO QNAFILE (FILENUM, FILENAME, ORINAME, NUM) VALUES (null, #{fileName}, #{oriName}, #{num})
+		INSERT INTO QNAFILES (FILENUM, FILENAME, ORINAME, NUM) VALUES (null, #{fileName}, #{oriName}, #{num})
 	</insert>
 	
 	<select id="getQnaDetail" parameterType="QnaVO" resultMap="getQnaDetailResult">
 		SELECT Q.*, F.FILENUM, F.FILENAME, F.ORINAME FROM QNA Q
-		LEFT JOIN QNAFILE F
+		LEFT JOIN QNAFILES F
 		ON Q.NUM = F.NUM
 		WHERE Q.NUM = #{num}
 	</select>
@@ -38,4 +38,8 @@
 			<result column="ORINAME" property="oriName"/>
 		</collection>
 	</resultMap>
+	
+	<select id="getFileDetail" parameterType="QnaFileVO" resultType="QnaFileVO">
+		SELECT * FROM QNAFILES WHERE FILENUM = #{fileNum}
+	</select>
 </mapper>
