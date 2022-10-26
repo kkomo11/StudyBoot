@@ -32,5 +32,15 @@
 		<a href="/fileDown/qna?fileNum=2">QnaDown</a>
 		<a href="/fileDown/notice?fileNum=2">NoticeDown</a>
 	</div>
+
+	<button id="btn">Click</button>
+	<button class="buttons">BTN1</button>
+	<button class="buttons">BTN2</button>
+	<button class="buttons">BTN3</button>
+
+	<div id="test">
+		
+	</div>
+	<script src="/js/test.js"></script>
 </body>
 </html>

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("/member/*")
@@ -43,5 +44,11 @@ public class MemberController {
 	public String getLogout(HttpSession session) throws Exception {
 		session.removeAttribute("member");
 		return "redirect:/";
+	}
+	
+	@GetMapping("idCheck")
+	@ResponseBody
+	public int getIdCheck(MemberVO memberVO) throws Exception {
+		return memberService.getIdCheck(memberVO);
 	}
 }
