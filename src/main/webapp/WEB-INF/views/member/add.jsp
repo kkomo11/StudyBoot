@@ -48,6 +48,11 @@
 			<button class="btn btn-primary" type="button" id="btnJoin">JOIN</button>
 		</form>
 		<div>
+			<button type="button" id="test">Test</button>
+			<button type="button" id="test2">Test2</button>
+			<button type="button" id="test3">Test3</button>
+		</div>
+		<div>
 			<div>
 				ALL <input type="checkbox" id="all">
 			</div>
@@ -66,6 +71,14 @@
 				동의3 <input type="checkbox" class="check">
 				<div>약관 3</div>
 			</div>
+		</div>
+
+		<div>
+			<select id="s1">
+				<option value="">1</option>
+				<option value="">2</option>
+			</select>
+			<button type="button" id="s1Add">Add</button>
 		</div>
 	</section>
 </body>

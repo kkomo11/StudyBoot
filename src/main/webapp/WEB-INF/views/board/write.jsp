@@ -13,6 +13,7 @@
 	}
 </style>
 <title>Insert title here</title>
+<script defer src="/js/fileManager.js"></script>
 </head>
 <body>
 	<h1>Board Write Page</h1>
@@ -34,12 +35,16 @@
 				<textarea class="form-control" id="contents" name="contents"></textarea>
 			</div>
 
-			<div class="input-group mb-3">
+			<!-- <div class="input-group mb-3">
 				<input type="file" class="form-control" name="files" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
 			</div>
 
 			<div class="input-group mb-3">
 				<input type="file" class="form-control" name="files" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+			</div> -->
+			<div class="mb-3" id="fileWrap"></div>
+			<div class="mb-3">
+				<button type="button" id="btnFileAdd">FileAdd</button>
 			</div>
 
 			<button class="btn btn-primary" type="submit">WRITE</button>

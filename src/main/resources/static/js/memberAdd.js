@@ -37,8 +37,21 @@ let results = [false,false,false,false,false,false];
 
 //ID Check
 $("#id").blur(function(){
-    let result = nullCheck($("#id").val(), "#check_id", "아이디")
+    let id = $('#id').val();
+    let result = nullCheck(id, "#check_id", "아이디")
     results[0]=result
+
+    //단 id가 빈String이 아닐 때로 분기처리
+    if(result) {
+        $.get('./idCheck?id='+id, function(data) {
+            if(data=='0') {
+                results[0]=true;
+            } else {
+                results[0]=false;
+                $("#check_id").html("아이디 중복");
+            }
+        });
+    }
 });
 
 $("#pw").on({
@@ -92,3 +105,57 @@ $("#joinButton").click(function(){
         // $("#joinForm").submit();
     }
 });
+
+$("#test").click(function() {
+    let id='123';
+    let name='iu';
+    $.post("./test", {id:id, name:name}, function(result) {
+        console.log(result);
+        console.log(result.name);
+    })
+})
+
+$("#test2").click(function() {
+    let id='abcd';
+    $.ajax({
+        type:"GET",
+        url:"idCheck",
+        data:{
+            id:id
+        },
+        success:function(data) {
+            console.log(data);
+        },
+        error:function(xhr, status, error) {
+            console.log('Xhr : ', xhr);
+            console.log('Status : ', status);
+            console.log('Error : ', error);
+        }
+    })
+})
+
+$("#test3").click(function() {
+    let id='123';
+    let name='iu';
+    let ar=[1,2,3];
+    $.ajax({
+        type:"POST",
+        url:"test",
+        traditional:true,   //배열을 전송할때 사용, true값 사용하면됨
+        data:{
+            id:id,
+            name:name,
+            ar:ar
+        },
+        success:function(data) {
+            console.log(data);
+        }
+    })
+})
+
+let count=3;
+$("#s1Add").click(function() {
+    let add = '<option>'+count+'</option>';
+    count++;
+    $("#s1").append(add);
+})

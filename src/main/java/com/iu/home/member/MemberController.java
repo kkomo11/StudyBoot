@@ -9,8 +9,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Controller
 @RequestMapping("/member/*")
+@Slf4j
 public class MemberController {
 	
 	@Autowired
@@ -48,7 +51,19 @@ public class MemberController {
 	
 	@GetMapping("idCheck")
 	@ResponseBody
-	public int getIdCheck(MemberVO memberVO) throws Exception {
+	public long getIdCheck(MemberVO memberVO) throws Exception {
 		return memberService.getIdCheck(memberVO);
+	}
+	
+	@PostMapping("test")
+	@ResponseBody
+	public MemberVO setTest(MemberVO memberVO, String[] ar) throws Exception {
+		log.info("id {}", memberVO.getId());
+		log.info("name {}", memberVO.getName());
+		for(String s : ar) {
+			log.info("ar : {}", s);
+	    }
+		
+		return memberVO;
 	}
 }

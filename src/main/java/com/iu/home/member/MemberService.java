@@ -30,12 +30,7 @@ public class MemberService {
 		return memberVO;
 	}
 	
-	public int getIdCheck(MemberVO memberVO) throws Exception {
-		int result=0;
-		memberVO = memberMapper.getIdCheck(memberVO);
-		if(memberVO != null) {
-			result=1;
-		}
-		return result;
+	public long getIdCheck(MemberVO memberVO) throws Exception {
+		return memberMapper.getIdCheck(memberVO);
 	}
 }

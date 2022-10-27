@@ -29,7 +29,7 @@
 		
 	</resultMap>
 	
-	<select id="getIdCheck" parameterType="MemberVO" resultType="MemberVO">
-		SELECT * FROM MEMBER WHERE ID=#{id}
+	<select id="getIdCheck" parameterType="MemberVO" resultType="Long">
+		SELECT COUNT(ID) FROM MEMBER WHERE ID=#{id}
 	</select>
 </mapper>

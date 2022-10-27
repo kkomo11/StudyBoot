@@ -10,5 +10,7 @@
 		<typeAlias type="com.iu.home.member.Member_RoleVO" alias="Member_RoleVO"/>
 		<typeAlias type="com.iu.home.member.RoleVO" alias="RoleVO"/>
 		<typeAlias type="com.iu.home.util.Pager" alias="Pager"/>
+		
+		<typeAlias type="java.lang.Long" alias="Long"/>
 	</typeAliases>
 </configuration>
