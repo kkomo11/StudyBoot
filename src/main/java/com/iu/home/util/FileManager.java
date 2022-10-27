@@ -41,6 +41,11 @@ public class FileManager extends AbstractView {
 		multipartFile.transferTo(file);
 		return sb.toString();
 	}
+	
+	public boolean deleteFile(String path, QnaFileVO qnaFileVO) throws Exception {
+		File file = new File(path, qnaFileVO.getFileName());
+		return file.delete();
+	}
 
 	@Override
 	protected void renderMergedOutputModel(Map<String, Object> model, HttpServletRequest request,

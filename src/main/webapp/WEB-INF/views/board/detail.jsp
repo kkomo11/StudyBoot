@@ -40,6 +40,8 @@
 		<c:forEach items="${QnaVO.qnaFileVOs}" var="file">
 			<a href="/fileDown/qna?fileNum=${file.fileNum}"><img src="/file/qna/${file.fileName}"></a>
 		</c:forEach>
+		
+		<a href="update?num=${QnaVO.num}" class="btn btn-primary">수정</a>
 	</section>
 	
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>

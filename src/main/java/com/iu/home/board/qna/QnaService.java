@@ -59,4 +59,14 @@ public class QnaService {
 	public QnaFileVO getFileDetail(QnaFileVO qnaFileVO) throws Exception {
 		return qnaMapper.getFileDetail(qnaFileVO);
 	}
+	
+	public boolean setFileDelete(QnaFileVO qnaFileVO) throws Exception {
+		qnaFileVO = qnaMapper.getFileDetail(qnaFileVO);
+		boolean check=false;
+		int result = qnaMapper.setFileDelete(qnaFileVO);
+		if(result==1) {
+			check = fileManager.deleteFile(path, qnaFileVO);
+		}
+		return check;
+	}
 }
