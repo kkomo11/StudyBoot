@@ -22,7 +22,7 @@
 		<form action="/qna/write" method="post" enctype="multipart/form-data">
 			<div class="input-group mb-3">
 				<span class="input-group-text">Writer</span>
-				<input type="text" class="form-control" value="${qnaVO.writer}" id="writer" name="writer" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+				<input type="text" class="form-control" value="${qnaVO.writer}" id="writer" name="writer" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" readonly>
 			</div>
 
 			<div class="input-group mb-3">
@@ -34,7 +34,7 @@
 				<span class="input-group-text">Contents</span>
 				<textarea class="form-control" id="contents" name="contents">${qnaVO.contents}</textarea>
 			</div>
-			<div class="mb-3" id="fileWrap">
+			<div class="mb-3" id="fileWrap" data-file-size="${qnaVO.qnaFileVOs.size()}">
 				<c:forEach items="${qnaVO.qnaFileVOs}" var="fileVO">
 					<p>${fileVO.oriName}
 						<button class="deleteFile" type="button" data-file-num="${fileVO.fileNum}">X</button>

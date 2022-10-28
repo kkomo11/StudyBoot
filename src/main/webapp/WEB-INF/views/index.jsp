@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,6 +12,8 @@
 </head>
 <body>
 	<h1>Index Page</h1>
+	<h1><spring:message code="hi" var="h"></spring:message></h1>
+	<h3>${h}</h3>
 	<img src="/images/iu1.jpg">
 	<c:choose>
 		<c:when test="${member eq null}">
@@ -18,6 +21,8 @@
 			<a href="/member/login">로그인</a>	
 		</c:when>
 		<c:otherwise>
+			<h3><spring:message code="welcome" arguments="${member.name}"></spring:message></h3>
+			<h3><spring:message code="welcome2" arguments="${member.id},${member.name}" argumentSeparator=","></spring:message></h3>
 			<a href="/member/logout">로그아웃</a>
 			<c:forEach items="${member.roleVOs}" var="roleVO">
 				<div>${roleVO.roleName}</div>

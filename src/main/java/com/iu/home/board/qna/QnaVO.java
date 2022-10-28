@@ -3,6 +3,9 @@ package com.iu.home.board.qna;
 import java.sql.Date;
 import java.util.List;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+
 import org.springframework.web.multipart.MultipartFile;
 
 import lombok.Data;
@@ -11,8 +14,11 @@ import lombok.Data;
 public class QnaVO {
 
 	private Long num;
+	@NotBlank
 	private String title;
+	@NotBlank
 	private String writer;
+	@NotBlank
 	private String contents;
 	private Long hit;
 	private Date regDate;
