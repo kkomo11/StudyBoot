@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+    <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,20 +16,25 @@
 	<h1><spring:message code="hi" var="h"></spring:message></h1>
 	<h3>${h}</h3>
 	<img src="/images/iu1.jpg">
-	<c:choose>
-		<c:when test="${member eq null}">
+		<sec:authorize access="!isAuthenticated()">
 			<a href="/member/add">회원가입</a>
-			<a href="/member/login">로그인</a>	
-		</c:when>
-		<c:otherwise>
-			<h3><spring:message code="welcome" arguments="${member.name}"></spring:message></h3>
-			<h3><spring:message code="welcome2" arguments="${member.id},${member.name}" argumentSeparator=","></spring:message></h3>
-			<a href="/member/logout">로그아웃</a>
-			<c:forEach items="${member.roleVOs}" var="roleVO">
-				<div>${roleVO.roleName}</div>
-			</c:forEach>		
-		</c:otherwise>
-	</c:choose>
+			<a href="/member/login">로그인</a>			
+		</sec:authorize>
+		<sec:authorize access="isAuthenticated()">
+			<sec:authentication property="Principal" var="user"/>
+			<h3><spring:message code="welcome" arguments="${user.name}"></spring:message></h3>
+			<h3><spring:message code="welcome2" arguments="${user.id},${user.name}" argumentSeparator=","></spring:message></h3>
+			<a href="/member/logout">로그아웃</a>	
+			<a href="/member/mypage">마이페이지</a>	
+		</sec:authorize>
+		<sec:authorize access="hasRole('ADMIN')">
+			<a href="/admin">Admin</a>
+		</sec:authorize>
+		<sec:authorize access="hasAnyRole('ADMIN', 'MANAGER')">
+			<a href="/manager">Manager</a>
+
+		</sec:authorize>
+		
 	<a href="/qna/list?page=1">QnA</a>
 	<div>
 		

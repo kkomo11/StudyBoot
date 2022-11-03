@@ -1,5 +1,7 @@
 package com.iu.home.member;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -7,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,10 +35,26 @@ public class MemberController {
 	@PostMapping("add")
 	public ModelAndView setMember(@Valid MemberVO memberVO, BindingResult bindingResult, ModelAndView mv) throws Exception {
 		mv.setViewName("redirect:/");
-		if(bindingResult.hasErrors()) {
-			//검증에 실패하면 회원가입하는 jsp로 foward
+//		if(bindingResult.hasErrors()) {
+//			//검증에 실패하면 회원가입하는 jsp로 foward
+//			log.info("검증 에러 발생");
+//			mv.setViewName("member/add");
+//			return mv;
+//		}
+		
+		boolean check = memberService.getMemberError(memberVO, bindingResult);
+		if(check) {
 			log.info("검증 에러 발생");
 			mv.setViewName("member/add");
+			List<FieldError> errors = bindingResult.getFieldErrors();
+			for(FieldError fieldError : errors) {
+				log.info("FieldError => {}", fieldError);
+				log.info("Field => {}", fieldError.getField());
+				log.info("Message => {}", fieldError.getRejectedValue());
+				log.info("Default => {}", fieldError.getDefaultMessage());
+				log.info("code => {}", fieldError.getCode());
+			}
+			return mv;
 		}
 //		memberService.setMember(memberVO);
 		
@@ -47,18 +66,19 @@ public class MemberController {
 		return "member/login";
 	}
 	
-	@PostMapping("login")
-	public String getLogin(MemberVO memberVO, HttpSession session) throws Exception {
-		 memberService.getLogin(memberVO, session);
-		 
-		 return "redirect:/";
-	}
+//	@PostMapping("login")
+//	public String getLogin(MemberVO memberVO, HttpSession session) throws Exception {
+//		 memberService.getLogin(memberVO, session);
+//		 
+//		 return "redirect:/";
+//	}
 	
-	@GetMapping("logout")
-	public String getLogout(HttpSession session) throws Exception {
-		session.removeAttribute("member");
-		return "redirect:/";
-	}
+//	@GetMapping("logout")
+//	public String getLogout(HttpSession session) throws Exception {
+//		log.info("==== 내가만든 로그아웃 메서드 = ========");
+//		session.invalidate();
+//		return "redirect:/";
+//	}
 	
 	@GetMapping("idCheck")
 	@ResponseBody
@@ -76,5 +96,10 @@ public class MemberController {
 	    }
 		
 		return memberVO;
+	}
+	
+	@GetMapping("mypage")
+	public String getMyPage() throws Exception {
+		return "member/mypage";
 	}
 }

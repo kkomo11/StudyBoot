@@ -11,18 +11,20 @@
 		INSERT INTO MEMBER_ROLE (ID, NUM) VALUES (#{id}, #{num})
 	</insert>
 	
-	<select id="getLogin" resultMap="getLoginResult" parameterType="MemberVO">
+	<select id="getLogin" resultMap="getLoginResult" parameterType="String">
 		SELECT M.*,R.NUM, R.ROLENAME FROM MEMBER M
 		JOIN MEMBER_ROLE MR
 		ON M.ID = MR.ID 
 		JOIN ROLE R
 		ON R.NUM = MR.NUM
-		WHERE M.ID=#{id} AND M.PW=#{pw}
+		WHERE M.ID=#{username}
 	</select>
 	
 	<resultMap type="MemberVO" id="getLoginResult">
 		<id column="ID" property="id"/>
+		<result column="PW" property="pw"/>
 		<result column="NAME" property="name"/>
+		<result column="EMAIL" property="email"/>
 		<collection property="roleVOs" javaType="List" ofType="RoleVO">
 			<id column="NUM" property="num"/>
 			<result column="ROLENAME" property="roleName"/>

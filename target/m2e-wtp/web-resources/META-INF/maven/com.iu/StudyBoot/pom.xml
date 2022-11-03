@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.iu</groupId>
 	<artifactId>StudyBoot</artifactId>
-	<version>0.0.2-SNAPSHOT</version>
+	<version>0.0.3-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>StudyBoot</name>
 	<description>Demo project for Spring Boot</description>
@@ -30,8 +30,6 @@
 		    <artifactId>spring-boot-starter-aop</artifactId>
 		</dependency>
 
-	
-	
 		<dependency>
 			<groupId>org.bgee.log4jdbc-log4j2</groupId>
 			<artifactId>log4jdbc-log4j2-jdbc4.1</artifactId>
@@ -53,8 +51,6 @@
 		     <!-- 버전 삭제 -->
 		</dependency>
 
-	
-<!--
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-oauth2-client</artifactId>
@@ -63,7 +59,13 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
--->
+		
+		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-taglibs -->
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-taglibs</artifactId>
+		</dependency>
+
 		<dependency>
 			<groupId>org.mybatis.spring.boot</groupId>
 			<artifactId>mybatis-spring-boot-starter</artifactId>

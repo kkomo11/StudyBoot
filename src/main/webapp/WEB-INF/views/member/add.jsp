@@ -8,7 +8,7 @@
 			<meta charset="UTF-8">
 			<c:import url="../temp/boot.jsp"></c:import>
 			<title>Insert title here</title>
-			<!-- <script defer src="/js/memberAdd.js"></script> -->
+			<script defer src="/js/memberAdd.js"></script>
 			<script defer src="/js/util.js"></script>
 		</head>
 <body>

@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.BindingResult;
 
 @Service
 public class MemberService {
@@ -22,13 +23,27 @@ public class MemberService {
 		return result;
 	}
 	
-	public MemberVO getLogin(MemberVO memberVO, HttpSession session) throws Exception {
-		memberVO = memberMapper.getLogin(memberVO);
-		if(memberVO != null) {
-			session.setAttribute("member", memberVO);
+	public boolean getMemberError(MemberVO memberVO, BindingResult bindingResult) {
+		boolean check = false;
+		check = bindingResult.hasErrors();
+		//check=false : 검증 성공
+		//check=true : 검증 실패
+		if(!memberVO.getPw().equals(memberVO.getPw2())) {
+			check=true;
+//			bindingResult.rejectValue("멤버변수명(path)", "properties의 key(code)");
+			
 		}
-		return memberVO;
+		
+		return check;
 	}
+	
+//	public MemberVO getLogin(MemberVO memberVO, HttpSession session) throws Exception {
+//		memberVO = memberMapper.getLogin(memberVO);
+//		if(memberVO != null) {
+//			session.setAttribute("member", memberVO);
+//		}
+//		return memberVO;
+//	}
 	
 	public long getIdCheck(MemberVO memberVO) throws Exception {
 		return memberMapper.getIdCheck(memberVO);
