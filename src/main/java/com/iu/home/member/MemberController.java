@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -62,16 +63,19 @@ public class MemberController {
 	}
 	
 	@GetMapping("login")
-	public String getLogin() throws Exception {
+	public String getLogin(@RequestParam(defaultValue = "false", required = false) boolean error, String message, Model model) throws Exception {
+		// Controller에서 받아서 jsp로 보내도 됨
+		if(error) {
+			model.addAttribute("msg", "ID 또는 PW를 확인하세요");
+		}
 		return "member/login";
 	}
 	
-//	@PostMapping("login")
-//	public String getLogin(MemberVO memberVO, HttpSession session) throws Exception {
-//		 memberService.getLogin(memberVO, session);
-//		 
-//		 return "redirect:/";
-//	}
+	@PostMapping("login")
+	public String getLogin() throws Exception {
+		 
+		 return "member/login";
+	}
 	
 //	@GetMapping("logout")
 //	public String getLogout(HttpSession session) throws Exception {

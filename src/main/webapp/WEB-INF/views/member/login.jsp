@@ -12,14 +12,20 @@
 	<h1>Login Page</h1>
 	<section class="container" style="width: 60%;">
 		<form action="login" method="post">
+			${param.message}
 			<div class="input-group mb-3">
 				<span class="input-group-text">Id</span>
-				<input type="text" class="form-control" id="id" name="id" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+				<input type="text" class="form-control" id="id" name="id" value="${cookie.userID.value}" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
 			</div>
 			
 			<div class="input-group mb-3">
 				<span class="input-group-text">Password</span>
-				<input type="password" class="form-control" id="pw" name="pw" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+				<input type="password" class="form-control" id="pw" name="pw" value="admin1" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+			</div>
+			
+			<div>
+				<span>아이디저장</span>
+				<input type="checkbox" name="check">
 			</div>
 			
 			<button class="btn btn-primary" type="submit">LogIn</button>
